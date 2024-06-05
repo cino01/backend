@@ -59,6 +59,7 @@ const userSchema = new mongoose.Schema({
         location: String,
         startDate: String,
         endDate: String,
+        image:String
       },
     ],
     default: [],
@@ -87,6 +88,7 @@ const userSchema = new mongoose.Schema({
         degree: String,
         startDate: String,
         endDate: String,
+        image:String
       },
     ],
     default: [],
@@ -98,6 +100,7 @@ const userSchema = new mongoose.Schema({
         org: String,
         url: String,
         startDate: String,
+        image: String,
       },
     ],
     default: [],

@@ -10,6 +10,7 @@ exports.getAllUsers = asyncCatcher(async (req, res, next) => {
     data: users,
   });
 });
+
 exports.getUser = asyncCatcher(async (req, res, next) => {
   const user = req.user;
   // Send the user's name and photo as a response

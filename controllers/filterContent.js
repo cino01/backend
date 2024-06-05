@@ -89,7 +89,7 @@ exports.getfilteredblogs = asyncCatcher(async (req, res, next) => {
 
 exports.getsortedblogs = asyncCatcher(async (req, res, next) => {
   try {
-    const blogs = await Blog.find().sort({ points: req.query.sort });
+    const blogs = await Blog.find().sort({ saves: req.query.sort });
     res.status(200).json(blogs);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -100,7 +100,7 @@ exports.getsortedfiltredblogs = asyncCatcher(async (req, res, next) => {
   try {
     const filtre = req.query.filtre ? req.query.filtre.split(",") : [];
     const blogs = await Blog.find({ categories: { $in: filtre } }).sort({
-      points: req.query.sort,
+      saves: req.query.sort,
     });
     const stats = await Statistics.findOne();
     if (!stats) {
@@ -241,7 +241,7 @@ exports.getfilteredcourses = asyncCatcher(async (req, res, next) => {
 
 exports.getsortedcourses = asyncCatcher(async (req, res, next) => {
   try {
-    const courses = await Course.find().sort({ points: req.query.sort });
+    const courses = await Course.find().sort({ saves: req.query.sort });
     res.status(200).json(courses);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -252,7 +252,7 @@ exports.getsortedfiltredcourses = asyncCatcher(async (req, res, next) => {
   try {
     const filtre = req.query.filtre ? req.query.filtre.split(",") : [];
     const courses = await Course.find({ categories: { $in: filtre } }).sort({
-      points: req.query.sort,
+      saves: req.query.sort,
     });
     const stats = await Statistics.findOne();
     if (!stats) {
@@ -393,7 +393,7 @@ exports.getfilteredresources = asyncCatcher(async (req, res, next) => {
 
 exports.getsortedresources = asyncCatcher(async (req, res, next) => {
   try {
-    const resources = await Resource.find().sort({ points: req.query.sort });
+    const resources = await Resource.find().sort({ saves: req.query.sort });
     res.status(200).json(resources);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -404,7 +404,7 @@ exports.getsortedfiltredresources = asyncCatcher(async (req, res, next) => {
   try {
     const filtre = req.query.filtre ? req.query.filtre.split(",") : [];
     const resources = await Resource.find({ categories: { $in: filtre } }).sort(
-      { points: req.query.sort }
+      { saves: req.query.sort }
     );
     const stats = await Statistics.findOne();
     if (!stats) {

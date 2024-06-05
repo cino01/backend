@@ -109,13 +109,14 @@ exports.adduprev = asyncCatcher(async (req, res, next) => {
       },
     }
   );
+  console.log('----------------------------------------------------')
   console.log(blog);
-  const rev = blog.up - blog.down;
-  var plus = 0;
+  var plus;
   function addplus() {
-    return 0.5;
+    return 2;
   }
   plus = addplus();
+  console.log("-------------------------------------------------------------------------------------------")
   console.log(plus);
   const myuser = await User.findOneAndUpdate(
     { _id: blog.user_id },
@@ -141,7 +142,7 @@ exports.adddownrev = asyncCatcher(async (req, res, next) => {
   const rev = blog.up - blog.down;
   var plus = 0;
   function addplus() {
-    return 0.5;
+    return -1;
   }
   plus = addplus();
   console.log(plus);
@@ -168,7 +169,7 @@ exports.remuprev = asyncCatcher(async (req, res, next) => {
   const rev = blog.up - blog.down;
   var plus = 0;
   function addplus() {
-    return 0;
+    return -2;
   }
   plus = addplus();
   console.log(plus);
@@ -195,7 +196,7 @@ exports.remdownrev = asyncCatcher(async (req, res, next) => {
   const rev = blog.up - blog.down;
   var plus = 0;
   function addplus() {
-    return 0;
+    return 1;
   }
   plus = addplus();
   console.log(plus);
@@ -218,7 +219,7 @@ exports.switchuptodown = asyncCatcher(async (req, res, next) => {
   const rev = blog.up - blog.down;
   var plus = 0;
   function addplus() {
-    return 0;
+    return -3;
   }
   plus = addplus();
   console.log(plus);
@@ -238,10 +239,10 @@ exports.switchdowntoup = asyncCatcher(async (req, res, next) => {
     { $inc: { down: +1, up: -1 } }
   );
   console.log(blog);
-  const rev = blog.up - blog.down;
+  
   var plus = 0;
   function addplus() {
-    return 0;
+    return 3;
   }
   plus = addplus();
   console.log(plus);
@@ -339,6 +340,7 @@ exports.createResource = asyncCatcher(async (req, res, next) => {
     stats.total_points += 20;
 
     function updateCategories(array, categoriesToCheck) {
+      
       categoriesToCheck.forEach((category) => {
         const foundObject = array.find((obj) => obj.category === category);
 

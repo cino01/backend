@@ -3,6 +3,7 @@ const userController = require("../controllers/usersController");
 const contentCreation = require("../controllers/contentCreation");
 const experienceController = require("../controllers/profileController");
 const express = require("express");
+const profileController=require('../controllers/profileController');
 const { Experience } = require("../models/experienceModule");
 const router = express.Router();
 /// AUTHENTICATION PART ../../../../../.../
@@ -38,6 +39,11 @@ router.patch(
   experienceController.addEducations
 );
 router.patch(
+  "/addLicence",
+  authController.protect,
+  experienceController.addlicences
+);
+router.patch(
   "/addCertification",
   authController.protect,
   experienceController.addCertification
@@ -47,6 +53,13 @@ router.patch(
   authController.protect,
   experienceController.addLanguage
 );
+router.delete('/deleteexperience',authController.protect,profileController.deleteExperience);
+router.delete('/deleteeducation',authController.protect,profileController.deleteeducation);
+router.delete('/deletelanguage',authController.protect,profileController.deletelanguage);
+router.delete('/deletelicences',authController.protect,profileController.deletelicences);
+router.delete('/deletecertification',authController.protect,profileController.deletesertification);
+router.delete('/deleteskill',authController.protect,profileController.deleteskill);
+
 /// MY PROFILE
 router.get("/getMe", authController.protect, userController.getUser);
 router.get('/allUsers',userController.getAllUsers);
